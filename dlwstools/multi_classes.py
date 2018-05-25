@@ -22,7 +22,7 @@ import warnings
 
 # Convert a sparse 2D array to a dense 2D array with a class map
 def sparse_to_dense( origin, classmap):
-    result = np.zeros( (origin.shape[0], len(classmap) )
+    result = np.zeros( (origin.shape[0], len(classmap) ) )
     for i in range(origin.shape[0]):
         for j in origin[i]:
             result[i][classmap[j]] = 1
