@@ -49,7 +49,7 @@ class MultiClass(object):
         self.truth = truth
         self.pred = pred
         if self.numclasses is None:
-            self.numclasses = self.truth.shape[0]
+            self.numclasses = self.truth.shape[1]
     
     def histogram(self):
         hist = np.zeros(self.numclasses)
@@ -61,6 +61,37 @@ class MultiClass(object):
                 if item[j] > 0.5:
                     hist[j] += 1
         return hist
-        
 
+    # return recall, precision and f1 score.
+    def score(self):
+        _tt = np.zeros( self. num_classes )
+        _tf = np.zeros( self. num_classes )
+        _ft = np.zeros( self. num_classes )
+        nitems = self.truth.shape[0]        
+        for i in range(nitems):
+            pred_class = {}
+            org_class = {}
+            for j in range(self.num_classes):
+                if self.pred[i][j]>0.5:
+                    pred_class[j] = True
+                if self.truth.classes[i][j]>0.5:
+                    org_class[j] = True
+            pred_extra_class = {}
+            for (j, _) in pred_class.items():
+                if j in org_class:
+                    _tt[j] += 1
+                    org_class.pop(j)
+                else:
+                    pred_extra_class[j] = True
+            for (j, _) in org_class.items():
+                _tf[j] += 1
+            for (j, _) in pred_extra_class.items():
+                _ft[j] += 1
+        recall = (_tt ) / ( _tt + _tf)
+        recall = 1-np.nan_to_num( 1-recall )
+        precision = (_tt) / (_tt + _ft )
+        precision = 1-np.nan_to_num( 1-precision )
+        f1 = 2 / ( (1/recall) + (1 / precision))
+
+        return ( recall, precision, f1)
 
