@@ -49,14 +49,14 @@ class MultiClass(object):
         self.truth = truth
         self.pred = pred
         if self.numclasses is None:
-            self.numclasses = len( self.truth[0])
+            self.numclasses = self.truth.shape[0]
     
     def histogram(self):
         hist = np.zeros(self.numclasses)
 
         for (i,item) in enumerate(self.truth):
-            if i==0:
-                print ("Item[0] is %s" % item )
+            #if i==0:
+            #    print ("Item[0] is %s" % item )
             for (j, val) in enumerate(item):
                 if item[j] > 0.5:
                     hist[j] += 1
