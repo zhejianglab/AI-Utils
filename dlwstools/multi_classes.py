@@ -40,5 +40,24 @@ class MultiClass(object):
     """
 
     def __init__(self, truth, pred=None, classmap=None):
-        ()
+        self.numclasses = None
+        if classmap is not None:
+            truth = sparse_to_dense( truth, classmap)
+            self.numclasses = len(classmap)
+            if pred is not None:
+                pred = sparse_to_dense( pred, classmap)
+        self.truth = truth
+        self.pred = pred
+        if self.numclasses is None:
+            self.numclasses = len( self.truth[0])
+    
+    def histogram(self):
+        hist = np.zeros(self.numclasses)
+        for item in self.truth:
+            for (j, val) in enumerate(item):
+                if item[j] > 0.5:
+                    hist[j] += 1
+        return hist
+        
+
 
