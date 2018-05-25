@@ -54,7 +54,7 @@ class MultiClass(object):
     def histogram(self):
         hist = np.zeros(self.numclasses)
 
-        for (i,item) in enumerator(self.truth):
+        for (i,item) in enumerate(self.truth):
             if i==0:
                 print ("Item[0] is %s" % item )
             for (j, val) in enumerate(item):
