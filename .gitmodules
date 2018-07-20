@@ -7,3 +7,6 @@
 	branch = master
 [submodule]
 	keras-multiprocess-image-data-generator = branch
+[submodule "keras-applications"]
+	path = keras-applications
+	url = https://github.com/DLWorkspace/keras-applications
