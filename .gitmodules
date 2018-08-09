@@ -10,3 +10,6 @@
 [submodule "keras-applications"]
 	path = keras-applications
 	url = https://github.com/DLWorkspace/keras-applications
+[submodule "pretrained-models.pytorch"]
+	path = pretrained-models.pytorch
+	url = https://github.com/DLWorkspace/pretrained-models.pytorch
