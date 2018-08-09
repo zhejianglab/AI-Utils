@@ -13,3 +13,6 @@
 [submodule "pretrained-models.pytorch"]
 	path = pretrained-models.pytorch
 	url = https://github.com/DLWorkspace/pretrained-models.pytorch
+[submodule "pytorch-summary"]
+	path = pytorch-summary
+	url = https://github.com/DLWorkspace/pytorch-summary
