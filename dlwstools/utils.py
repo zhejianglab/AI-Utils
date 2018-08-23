@@ -10,7 +10,9 @@ import json
 import random
 import sys
 from operator import itemgetter
-
+import urllib.request
+import shutil
+import requests
 
 try:
     from PIL import Image as pil_image
@@ -72,6 +74,32 @@ def print_layers( model, first = None, last = None ):
         if bPrint:
             print ( "Layer %d ==== %s" % (idx, layer.name ) )
         idx += 1
+
+def download_if_notexist( file, file_uri ):
+    if not os.path.exists(file):
+        # Download the file from `url` and save it locally under `file_name`:
+        with urllib.request.urlopen(file_uri) as response, open(file, 'wb') as out_file:
+            shutil.copyfileobj(response, out_file)
+            
+def download_if_notexist( file, file_uri, token = None, cookies = None ):
+    if not os.path.exists(file):
+        # Download the file from `url` and save it locally under `file_name`:
+        if token is None:
+            if cookies is None:
+                with urllib.request.urlopen(file_uri) as response, open(file, 'wb') as out_file:
+                    shutil.copyfileobj(response, out_file)
+                    return
+            else:
+                response = requests.get( file_uri, cookies=cookies)
+        else:
+            response = requests.get( file_uri, headers={'Authorization': 'access_token %s' % token})
+        if response.status_code == 200:
+            data = response.raw.read()
+            with open(file, 'wb') as f:
+                f.write(data)
+                print( "Write %s" % file ) 
+        else:
+            print(response.content)
         
 class Tee(object):
     def __init__(self, name):
