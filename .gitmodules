@@ -16,3 +16,6 @@
 [submodule "pytorch-summary"]
 	path = pytorch-summary
 	url = https://github.com/DLWorkspace/pytorch-summary
+[submodule "keras-preprocessing"]
+	path = keras-preprocessing
+	url = git@github.com-jinlccs:DLWorkspace/keras-preprocessing.git
