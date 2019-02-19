@@ -1,9 +1,9 @@
 [submodule "Mask_RCNN"]
 	path = Mask_RCNN
-	url = https://github.com/DLWorkspace/Mask_RCNN
+	url = https://github.com/zhejianglab/Mask_RCNN
 [submodule "keras-multiprocess-image-data-generator"]
 	path = keras-multiprocess-image-data-generator
-	url = https://github.com/DLWorkspace/keras-multiprocess-image-data-generator
+	url = https://github.com/zhejianglab/keras-multiprocess-image-data-generator
 	branch = master
 [submodule]
 	keras-multiprocess-image-data-generator = branch
@@ -18,4 +18,4 @@
 	url = https://github.com/DLWorkspace/pytorch-summary
 [submodule "keras-preprocessing"]
 	path = keras-preprocessing
-	url = git@github.com-jinlccs:DLWorkspace/keras-preprocessing.git
+	url = https://github.com/DLWorkspace/keras-preprocessing.git
